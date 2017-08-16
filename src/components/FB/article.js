@@ -9,8 +9,8 @@ export default class Article extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            originalText: null,
-            usersText: null,
+            originalText: '',
+            usersText: '',
         };
     }
 
