@@ -4,9 +4,29 @@
 
 var express = require('express');
 var router = express.Router();
+var bodyParser = require('body-parser');
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended: false}));
 
 router.get('/', function (req, res) {
     res.send('api page')
+});
+
+router.post('/store', function (req, res){
+    console.log(req.body);
+    res.send(true);
+});
+
+router.get('/results', function (req, res){
+    var result = [];
+    result.push({
+        id: 1123,
+        articleUrl: 'articleUrl',
+        originalText: 'originalText',
+        usersText: 'usersText',
+        isApproved: 'isApproved'
+    });
+    res.send(result);
 });
 
 router.get('/article', function (req, res) {
