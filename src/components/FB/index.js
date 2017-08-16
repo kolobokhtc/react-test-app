@@ -2,19 +2,22 @@
  * Created by eng210 on 15.08.2017.
  */
 import React, {Component} from "react";
-import classnames from 'classnames';
+import {Provider} from "react-redux";
+import FB from "./fb";
 
-class FB extends Component {
-    render(){
-        const {className, ...props} = this.props;
+import configureFbStore from "./store";
+
+const store = configureFbStore();
+
+class FBRoot extends Component {
+
+    render() {
         return (
-            <div className={classnames('About', className)} {...props}>
-                <h1>
-                    About
-                </h1>
-            </div>
+            <Provider store={store}>
+                <FB/>
+            </Provider>
         );
     }
 }
 
-export default FB;
+export default FBRoot;
