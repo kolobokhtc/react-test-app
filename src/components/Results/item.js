@@ -69,7 +69,7 @@ export default class ResultItem extends Component {
     render() {
         const {item} = this.props;
         const {busy} = this.state;
-        return <div>
+        return <div className="block">
             <Card>
                 <CardHeader
                     title={item.originalText}
