@@ -3,6 +3,9 @@
  */
 
 import React, {Component} from "react";
+import TextField from "material-ui/TextField";
+import RaisedButton from "material-ui/RaisedButton";
+import Paper from "material-ui/Paper";
 
 export default class Article extends Component {
 
@@ -14,17 +17,17 @@ export default class Article extends Component {
         };
     }
 
-    handleSubmit(event){
+    handleSubmit(event) {
         this.props.onSave(this.state);
         event.preventDefault();
     }
 
-    handleChange(event){
+    handleChange(event) {
         this.setState({usersText: event.target.value});
     }
 
-    componentWillReceiveProps(nextProps){
-        if (nextProps.article){
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.article) {
             this.setState({
                 originalText: nextProps.article,
                 usersText: nextProps.article,
@@ -34,19 +37,41 @@ export default class Article extends Component {
 
     render() {
         const {article} = this.props;
-        return <form onSubmit={this.handleSubmit.bind(this)}>
-            <div>
-                <span>Original text</span>
-                <p>{this.state.originalText}</p>
-            </div>
-            <div>
-                <span>User text</span>
-                <div>
-                    <textarea value={this.state.usersText} onChange={this.handleChange.bind(this)}></textarea>
-                </div>
-            </div>
-            <button type="submit">Save text</button>
-        </form>
+        const style = {
+            marginTop: '20px'
+        };
+        return <div style={style}>
+            <Paper zDepth={1}>
+                <form onSubmit={this.handleSubmit.bind(this)}>
+
+                    <div>
+                        <TextField
+                            hintText="Original text"
+                            floatingLabelText="Original text"
+                            multiLine={true}
+                            rows={2}
+                            value={this.state.originalText}
+                            disabled={true}
+                            fullWidth={true}
+                        />
+                    </div>
+
+                    <div>
+
+                        <TextField
+                            hintText="User text"
+                            floatingLabelText="User text"
+                            multiLine={true}
+                            rows={2}
+                            value={this.state.usersText}
+                            fullWidth={true}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+                    <RaisedButton style={style} type="submit" label="Save text"/>
+                </form>
+            </Paper>
+        </div>
     }
 
 }

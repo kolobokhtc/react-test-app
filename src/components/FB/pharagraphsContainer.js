@@ -6,6 +6,7 @@ import React, {Component, PropTypes} from "react";
 import Article from "./article";
 import reqwest from "reqwest";
 import {apiUrl} from "../../config";
+import CircularProgress from 'material-ui/CircularProgress';
 
 export default class PharagraphsContainer extends Component {
 
@@ -49,7 +50,7 @@ export default class PharagraphsContainer extends Component {
 
             {(!uri || uri.length < 10) ? 'enter valid url' : null}
 
-            { fetching ? <p>Загрузка</p> : null}
+            { fetching ? <CircularProgress /> : null}
 
             { error ? <p class="error">{error}</p> : null}
 

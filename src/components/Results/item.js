@@ -5,6 +5,9 @@
 import React, {Component} from "react";
 import reqwest from "reqwest";
 import {apiUrl} from "../../config";
+import RaisedButton from 'material-ui/RaisedButton';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import CircularProgress from 'material-ui/CircularProgress';
 
 export default class ResultItem extends Component {
 
@@ -67,19 +70,25 @@ export default class ResultItem extends Component {
         const {item} = this.props;
         const {busy} = this.state;
         return <div>
-            {item.isApproved == true ? <div>Approved</div> : null }
-            <div>
-                <span>Original text</span>
-                <p>{item.originalText}</p>
-            </div>
-            <div>
-                <span>User text</span>
-                <div>
-                    <p>{item.usersText}</p>
-                </div>
-            </div>
-            { busy ? <div>processing</div> : <div><button onClick={this.handleDelete.bind(this)}>Delete</button><button onClick={this.handleApprove.bind(this)}>Approve</button></div>}
-
+            <Card>
+                <CardHeader
+                    title={item.originalText}
+                    subtitle="Original text"
+                />
+                <CardHeader
+                    title={item.usersText}
+                    subtitle="User text"
+                />
+                <CardActions>
+                    { busy
+                        ? <CircularProgress />
+                        : <div>
+                            <RaisedButton label="Delete" onClick={this.handleDelete.bind(this)} />
+                            <RaisedButton label="Approve" disabled={item.isApproved} onClick={this.handleApprove.bind(this)} />
+                        </div>
+                    }
+                </CardActions>
+            </Card>
         </div>
     }
 
