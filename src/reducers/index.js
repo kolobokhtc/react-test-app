@@ -4,7 +4,8 @@
 import {combineReducers} from "redux";
 import fb from "./fb";
 import user from "./user";
+import fbresults from "./fbresults";
 
 export default combineReducers({
-    fb, user
+    fb, user, fbresults
 })

@@ -9,7 +9,7 @@ const initialState = {
     title: '',
     pharagraphs: [],
     fetching: false,
-    error: null
+    error: null,
 };
 
 export default function fb(state = initialState, action) {
