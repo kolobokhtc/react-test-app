@@ -18,27 +18,23 @@ router.get('/article', function (req, res) {
     var request = require('request'),
         cheerio = require('cheerio');
 
-    request({uri: req.query.url, method: 'GET', encoding: 'binary'},
+    var response = res;
+
+    request({uri: req.query.url, method: 'GET', encoding: 'UTF-8'},
         function (err, res, page) {
-        console.log(page);
+            var base = {
+                title: null,
+                pharagraphs: []
+            };
             var $ = cheerio.load(page);
-            var headline = $('h2.headline').html();
-            var paragrafs = $('div.lab-bodytext-content p');
-            console.log(paragrafs);
+            base.title = $('h2.headline').html();
+            $('div.lab-bodytext-content p').each(function () {
+                base.pharagraphs.push($(this).text());
+            });
+
+            response.send(base);
         });
 
-
-    var base = {
-        title: 'Article title',
-        pharagraphs: [
-            'first pharagraph content',
-            'second pharagraph content',
-            'etc pharagraph content',
-        ]
-    };
-
-
-    res.send(base);
 });
 
 module.exports = router;
