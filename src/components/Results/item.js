@@ -39,7 +39,6 @@ export default class ResultItem extends Component {
             self.setState({busy: false})
         });
 
-
     }
 
     handleDelete(event) {

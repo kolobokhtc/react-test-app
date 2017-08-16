@@ -29,7 +29,11 @@ class Results extends Component {
 
         return (
             <div>
-                {results.map((item, index)=> <ResultItem key={index} item={item} onDelete={this.handleDelete.bind(this, item.id)} onApprove={this.handleApprove.bind(this, item.id)}></ResultItem>)}
+                {results.length > 0
+                    ? results.map((item, index)=> <ResultItem key={index} item={item} onDelete={this.handleDelete.bind(this, item.id)} onApprove={this.handleApprove.bind(this, item.id)}></ResultItem>)
+                    : <div>empty</div>
+                }
+
             </div>
         );
     }
