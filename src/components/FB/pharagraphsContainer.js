@@ -3,6 +3,7 @@
  */
 
 import React, {Component, PropTypes} from "react";
+import Article from "./article";
 
 export default class PharagraphsContainer extends Component {
 
@@ -19,6 +20,17 @@ export default class PharagraphsContainer extends Component {
         }
     }
 
+    handleChanges(data) {
+
+        var data = {
+            articleUrl: this.props.uri,
+            originalText: data.originalText,
+            usersText: data.usersText
+        };
+        
+        console.log('save changes', data);
+    }
+
     render() {
 
         const {uri, title, pharagraphs, fetching, error} = this.props;
@@ -30,13 +42,13 @@ export default class PharagraphsContainer extends Component {
             { fetching ? <p>Загрузка</p> : null}
 
             { error ? <p class="error">{error}</p> : null}
-            {/*<span>{uri}</span>*/}
+
             <h1>
                 {title}
             </h1>
-            <ul>
-                { pharagraphs.map((item, index) => <li className='btn' key={index}>{item}</li>)}
-            </ul>
+            <div>
+                { pharagraphs.map((item, index) => <Article className='btn' key={index} article={item} onSave={this.handleChanges.bind(this)}></Article>)}
+            </div>
         </div>
     }
 
