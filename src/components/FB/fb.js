@@ -12,12 +12,12 @@ import * as FBActions from "./actions";
 class FB extends Component {
 
     render() {
-        const {uri, title, pharagraphs, fetching} = this.props.fb;
+        const {uri, title, pharagraphs, fetching, error} = this.props.fb;
         const {getPharagraphs} = this.props.fbActions;
 
         return (
             <div>
-                <PharagraphsContainer uri={uri} title={title} pharagraphs={pharagraphs} getPharagraphs={getPharagraphs} fetching={fetching}></PharagraphsContainer>
+                <PharagraphsContainer uri={uri} title={title} pharagraphs={pharagraphs} getPharagraphs={getPharagraphs} fetching={fetching} error={error}></PharagraphsContainer>
             </div>
         );
     }

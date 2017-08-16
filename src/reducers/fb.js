@@ -21,7 +21,7 @@ export default function fb(state = initialState, action) {
             return {...state, pharagraphs: action.payload, fetching: false, error: null};
             break;
         case GET_PHARAGRAPHS_FAIL:
-            return {...state, error: action.payload.message};
+            return {...state, error: action.payload, fetching: false};
             break;
         case GET_ARCTICLE_NAME:
             return {...state, title: action.payload};

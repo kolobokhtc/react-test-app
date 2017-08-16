@@ -21,11 +21,15 @@ export default class PharagraphsContainer extends Component {
 
     render() {
 
-        const {uri, title, pharagraphs, fetching} = this.props;
+        const {uri, title, pharagraphs, fetching, error} = this.props;
 
         return <div>
+
+            {(!uri || uri.length < 10) ? 'enter valid url' : null}
+
             { fetching ? <p>Загрузка</p> : null}
 
+            { error ? <p class="error">{error}</p> : null}
             {/*<span>{uri}</span>*/}
             <h1>
                 {title}
