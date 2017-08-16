@@ -24,16 +24,17 @@ class Results extends Component {
     }
 
     render() {
-        const {results} = this.props.fbresults;
+        const {results, fetching} = this.props.fbresults;
         const {getResults, remove} = this.props.resultsActions;
 
         return (
             <div>
+                { fetching ? <p>Loading...</p> : null}
+
                 {results.length > 0
                     ? results.map((item, index)=> <ResultItem key={index} item={item} onDelete={this.handleDelete.bind(this, item.id)} onApprove={this.handleApprove.bind(this, item.id)}></ResultItem>)
                     : <div>empty</div>
                 }
-
             </div>
         );
     }
