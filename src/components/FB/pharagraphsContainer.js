@@ -4,6 +4,8 @@
 
 import React, {Component, PropTypes} from "react";
 import Article from "./article";
+import reqwest from "reqwest";
+import {apiUrl} from "../../config";
 
 export default class PharagraphsContainer extends Component {
 
@@ -27,8 +29,16 @@ export default class PharagraphsContainer extends Component {
             originalText: data.originalText,
             usersText: data.usersText
         };
-        
-        console.log('save changes', data);
+
+        reqwest({
+            url: apiUrl + '/store',
+            method: 'post',
+            type: 'json',
+            data: data,
+            success: function (resp) {
+                console.log(resp);
+            }
+        });
     }
 
     render() {
