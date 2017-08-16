@@ -27,11 +27,8 @@ export default function fbresults(state = initialState, action) {
             }), fetching: false, error: null};
             break;
         case GET_RESULTS_APPROVE_ITEM:
-            return {...state, results: state.results.map((item) => {
-                if(item.id == action.payload) {
-                    item.isApproved = true;
-                }
-                return item;
+            return {...state, results: state.results.filter((item) => {
+                if(item.id !== action.payload) return item;
             }), fetching: false, error: null};
             break;
         default:
