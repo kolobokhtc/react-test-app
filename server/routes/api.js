@@ -26,7 +26,7 @@ router.get('/results', function (req, res){
         usersText: 'usersText',
         isApproved: 'isApproved'
     });
-    res.send(result);
+    res.send({results: result});
 });
 
 router.get('/article', function (req, res) {
