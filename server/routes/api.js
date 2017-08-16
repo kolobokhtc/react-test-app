@@ -15,6 +15,19 @@ router.get('/article', function (req, res) {
         res.send('setup url');
     }
 
+    var request = require('request'),
+        cheerio = require('cheerio');
+
+    request({uri: req.query.url, method: 'GET', encoding: 'binary'},
+        function (err, res, page) {
+        console.log(page);
+            var $ = cheerio.load(page);
+            var headline = $('h2.headline').html();
+            var paragrafs = $('div.lab-bodytext-content p');
+            console.log(paragrafs);
+        });
+
+
     var base = {
         title: 'Article title',
         pharagraphs: [
