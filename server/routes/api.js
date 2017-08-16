@@ -12,19 +12,36 @@ router.get('/', function (req, res) {
     res.send('api page')
 });
 
-router.post('/store', function (req, res){
+router.post('/store', function (req, res) {
     console.log(req.body);
     res.send(true);
 });
 
-router.get('/results', function (req, res){
+router.put('/results/:id', function (req, res) {
+    console.log('put', req.params.id, req.body);
+    res.send(true);
+});
+
+router.delete('/results/:id', function (req, res) {
+    console.log('delete', req.params.id);
+    res.send(true);
+});
+
+router.get('/results', function (req, res) {
     var result = [];
     result.push({
-        id: 1123,
-        articleUrl: 'articleUrl',
-        originalText: 'originalText',
-        usersText: 'usersText',
-        isApproved: 'isApproved'
+        id: 1,
+        articleUrl: 'articleUrl1',
+        originalText: 'originalText1',
+        usersText: 'usersText1',
+        isApproved: false
+    });
+    result.push({
+        id: 2,
+        articleUrl: 'articleUrl2',
+        originalText: 'originalText2',
+        usersText: 'usersText2',
+        isApproved: false
     });
     res.send({results: result});
 });

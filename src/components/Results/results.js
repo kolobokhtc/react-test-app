@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
 import * as ResultsActions from "./actions";
+import ResultItem from "./item";
 
 class Results extends Component {
 
@@ -14,13 +15,21 @@ class Results extends Component {
         this.props.resultsActions.getResults();
     }
 
+    handleDelete(id){
+        this.props.resultsActions.remove(id);
+    }
+
+    handleApprove(id){
+        this.props.resultsActions.approve(id);
+    }
+
     render() {
         const {results} = this.props.fbresults;
-        const {getResults} = this.props.resultsActions;
+        const {getResults, remove} = this.props.resultsActions;
 
         return (
             <div>
-                {results.map((item, index)=> <div key={index}>{item.id}</div>)}
+                {results.map((item, index)=> <ResultItem key={index} item={item} onDelete={this.handleDelete.bind(this, item.id)} onApprove={this.handleApprove.bind(this, item.id)}></ResultItem>)}
             </div>
         );
     }

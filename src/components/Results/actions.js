@@ -2,7 +2,7 @@
  * Created by eng210 on 16.08.2017.
  */
 
-import {GET_RESULTS_FAIL, GET_RESULTS_REQUEST, GET_RESULTS_SUCCESS} from "./constants";
+import {GET_RESULTS_FAIL, GET_RESULTS_REQUEST, GET_RESULTS_SUCCESS, GET_RESULTS_REMOVE_ITEM, GET_RESULTS_APPROVE_ITEM} from "./constants";
 import {apiUrl} from "../../config";
 
 import reqwest from "reqwest";
@@ -35,6 +35,26 @@ export function getResults(){
             .always(function (resp) {
 
             });
+
+    }
+}
+
+export function remove(id){
+    return (dispatch) => {
+        dispatch({
+            type: GET_RESULTS_REMOVE_ITEM,
+            payload: id
+        });
+
+    }
+}
+
+export function approve(id){
+    return (dispatch) => {
+        dispatch({
+            type: GET_RESULTS_APPROVE_ITEM,
+            payload: id
+        });
 
     }
 }
