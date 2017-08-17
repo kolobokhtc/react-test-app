@@ -71,7 +71,7 @@ router.put('/results/:id', function (req, res) {
 
 router.delete('/results/:id', function (req, res) {
     ArticleEntity.findById(req.params.id, function (err, article) {
-console.log(article);
+
         if (err) {
             res.send({status: false, error: true});
         }
