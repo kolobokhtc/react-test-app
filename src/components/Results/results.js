@@ -32,7 +32,7 @@ class Results extends Component {
                 { fetching ? <p>Loading...</p> : null}
 
                 {results.length > 0
-                    ? results.map((item, index)=> <ResultItem key={index} item={item} onDelete={this.handleDelete.bind(this, item.id)} onApprove={this.handleApprove.bind(this, item.id)}></ResultItem>)
+                    ? results.map((item, index)=> <ResultItem key={index} item={item} onDelete={this.handleDelete.bind(this, item._id)} onApprove={this.handleApprove.bind(this, item._id)}></ResultItem>)
                     : <div>empty</div>
                 }
             </div>

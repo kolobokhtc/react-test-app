@@ -23,12 +23,12 @@ export default function fbresults(state = initialState, action) {
             break;
         case GET_RESULTS_REMOVE_ITEM:
             return {...state, results: state.results.filter((item) => {
-                if(item.id !== action.payload) return item;
+                if(item._id !== action.payload) return item;
             }), fetching: false, error: null};
             break;
         case GET_RESULTS_APPROVE_ITEM:
             return {...state, results: state.results.filter((item) => {
-                if(item.id !== action.payload) return item;
+                if(item._id !== action.payload) return item;
             }), fetching: false, error: null};
             break;
         default:
