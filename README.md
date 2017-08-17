@@ -1,3 +1,9 @@
+`npm install`
+
+setup mongodb server url in 
+
+`config/default.json`
+
 run frontend
 
 `npm start`
@@ -6,11 +12,11 @@ run backend
 
 `node server/server.js`
 
-setup mongodb server url in 
+url with article parser:
 
-`config/default.json`
+`http://localhost:3000/fb?articleURL=http://www.dagbladet.no/kjendis/supermodellen-ble-beskyldt-for-a-ikke-tipse-etter-et-barbesok-na-svarer-hun-pa-kritikken/68573788`
 
-setup api url in
+url with results:
 
-`src/config.js`
+`http://localhost:3000/fb/results`
 
