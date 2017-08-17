@@ -68,7 +68,7 @@ export default class Article extends Component {
                             onChange={this.handleChange.bind(this)}
                         />
                     </div>
-                    <RaisedButton style={style} type="submit" label="Save text"/>
+                    <RaisedButton style={style} type="submit" label="Send changes"/>
                 </form>
             </Paper>
         </div>
