@@ -18,9 +18,11 @@ export default class PharagraphsContainer extends Component {
         var url_string = window.location.href;
         var url = new URL(url_string);
         var c = url.searchParams.get("articleURL");
-        if (typeof c != 'undefined' && c.length > 0) {
+
+        if (c){
             this.props.getPharagraphs(c);
         }
+
     }
 
     handleChanges(data) {
