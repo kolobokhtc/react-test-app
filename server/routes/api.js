@@ -93,7 +93,7 @@ router.delete('/results/:id', function (req, res) {
 
 router.get('/results', function (req, res) {
     var result = [];
-    ArticleEntity.find({}, function (err, articles) {
+    ArticleEntity.find({isApproved: false}).exec(function (err, articles) {
         if (err) throw err;
 
         result = articles;
