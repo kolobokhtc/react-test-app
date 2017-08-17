@@ -30,7 +30,7 @@ export default class ResultItem extends Component {
 
         self.setState({busy: true})
         reqwest({
-            url: apiUrl + '/results/' + item.id,
+            url: apiUrl + '/results/' + item._id,
             method: 'put',
             type: 'json',
             data: item
@@ -52,8 +52,8 @@ export default class ResultItem extends Component {
         const {item} = this.props;
 
         reqwest({
-            url: apiUrl + '/results/' + item.id,
-            method: 'put',
+            url: apiUrl + '/results/' + item._id,
+            method: 'delete',
             type: 'json',
             data: item
         }).then(function (resp) {

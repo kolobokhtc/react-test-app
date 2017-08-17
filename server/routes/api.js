@@ -5,6 +5,11 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test-db');
+var ArticleEntity = require('../db_models/article');
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
@@ -12,38 +17,91 @@ router.get('/', function (req, res) {
     res.send('api page')
 });
 
-router.post('/store', function (req, res) {
-    console.log(req.body);
-    res.send(true);
+router.post('/results', function (req, res) {
+
+    var articleEntity = new ArticleEntity();
+
+    if (req.body.articleUrl) {
+        articleEntity.articleUrl = req.body.articleUrl;
+    }
+
+    if (req.body.originalText) {
+        articleEntity.originalText = req.body.originalText;
+    }
+
+    if (req.body.usersText) {
+        articleEntity.usersText = req.body.usersText;
+    }
+
+    articleEntity.save(function (err) {
+        if (err) {
+            res.send({status: false, error: true});
+        }
+
+        res.send({status: true, error: false});
+
+    });
+
 });
 
 router.put('/results/:id', function (req, res) {
-    console.log('put', req.params.id, req.body);
-    res.send(true);
+
+    ArticleEntity.findById(req.params.id, function (err, article) {
+
+        if (err) {
+            res.send({status: false, error: true});
+        }
+
+        article.isApproved = req.body.isApproved;
+
+        article.save(function (err) {
+
+            if (err) {
+                res.send({status: false, error: true});
+            }
+
+            res.send({status: true, error: false});
+
+        })
+
+
+    });
+
 });
 
 router.delete('/results/:id', function (req, res) {
-    console.log('delete', req.params.id);
-    res.send(true);
+    ArticleEntity.findById(req.params.id, function (err, article) {
+console.log(article);
+        if (err) {
+            res.send({status: false, error: true});
+        }
+
+        article.remove(function (err) {
+
+            if (err) {
+                res.send({status: false, error: true});
+            }
+
+            res.send({status: true, error: false});
+
+        })
+
+
+    });
+
 });
 
 router.get('/results', function (req, res) {
     var result = [];
-    result.push({
-        id: 1,
-        articleUrl: 'articleUrl1',
-        originalText: 'originalText1',
-        usersText: 'usersText1',
-        isApproved: false
+    ArticleEntity.find({}, function (err, articles) {
+        if (err) throw err;
+
+        result = articles;
+
+        res.send({results: result});
     });
-    result.push({
-        id: 2,
-        articleUrl: 'articleUrl2',
-        originalText: 'originalText2',
-        usersText: 'usersText2',
-        isApproved: false
-    });
-    res.send({results: result});
+
+
 });
 
 router.get('/article', function (req, res) {

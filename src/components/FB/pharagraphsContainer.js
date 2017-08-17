@@ -32,7 +32,7 @@ export default class PharagraphsContainer extends Component {
         };
 
         reqwest({
-            url: apiUrl + '/store',
+            url: apiUrl + '/results',
             method: 'post',
             type: 'json',
             data: data,
