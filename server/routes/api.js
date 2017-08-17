@@ -6,8 +6,12 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 
+var config = require('config');
+var dbConfig = config.get("dev.dbConfig");
+
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test-db');
+mongoose.connect(dbConfig.host);
+
 var ArticleEntity = require('../db_models/article');
 
 router.use(bodyParser.json());

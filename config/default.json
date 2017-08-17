@@ -1,0 +1,7 @@
+{
+  "dev": {
+    "dbConfig": {
+      "host": "mongodb://localhost/test-db"
+    }
+  }
+}
