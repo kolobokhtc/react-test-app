@@ -4,8 +4,14 @@
 import {combineReducers} from "redux";
 import fb from "./fb";
 import user from "./user";
-import fbresults from "./fbresults";
+import selectedResult  from "./selectedResult";
+import fbresults from "./list";
 
 export default combineReducers({
-    fb, user, fbresults
+    fb,
+    user,
+    fbresults: combineReducers({
+        list: fbresults,
+        selected: selectedResult
+    })
 })
